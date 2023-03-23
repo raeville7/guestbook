@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
-import { firebase } from "../firebase/config";
+import firebase from "firebase/app";
 import { Main } from "../components/main/Main";
 import { Navigation } from "../components/ui/Navigation/Navigation";
 import { useDispatch } from "react-redux";

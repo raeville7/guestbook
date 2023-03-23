@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { NavLink } from "react-router-dom";
+import NCSTesseractLogoSrc from "../../../images/NCS_tesseract_Logo.png"
 
 export const Nav = styled.nav`
 	background-color: #151711;
@@ -48,4 +49,8 @@ export const Button = styled.button`
 		background-color: #f78e69;
 		color: black;
 	}
+`;
+
+export const NCSTesseractLogo = styled.div`
+  background-image: url(${NCSTesseractLogoSrc});
 `;

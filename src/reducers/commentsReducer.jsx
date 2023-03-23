@@ -12,7 +12,7 @@ export const commentsReducer = (state = [], action) => {
 					comment.id === action.payload.id
 						? {
 								...comment,
-								usersWhoVoted: action.payload.usersWhoVoted,
+								//usersWhoVoted: action.payload.usersWhoVoted,
 						  }
 						: comment
 				),

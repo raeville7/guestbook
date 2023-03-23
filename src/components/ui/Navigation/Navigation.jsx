@@ -1,5 +1,5 @@
 import React from "react";
-import { Nav, NavItem, WelcomeMessage, Button } from "./styles";
+import { Nav, NavItem, WelcomeMessage, Button, NCSTesseractLogo } from "./styles";
 import { useSelector, useDispatch } from "react-redux";
 import { startLogout } from "../../../actions/auth";
 import {
@@ -59,14 +59,12 @@ export const Navigation = () => {
 			</ul>
 
 			<div>
-				<WelcomeMessage>
-					Welcome, {username ? username : "unknown"}
-				</WelcomeMessage>
+				<NCSTesseractLogo>test</NCSTesseractLogo>
 			</div>
 
 			{username && location.pathname === "/" && (
 				<div>
-					<Button onClick={handleNewComment}>New comment :)</Button>
+					<Button onClick={handleNewComment}>New comment</Button>
 				</div>
 			)}
 		</Nav>

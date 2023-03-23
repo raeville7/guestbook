@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import moment from "moment";
 import {
 	Card,
@@ -9,12 +9,12 @@ import {
 	ContainerActionButton,
 } from "./styles";
 import { useDispatch, useSelector } from "react-redux";
-import {
-	startDeleteComment,
-	startVoteComment,
-	startNewCommentOrEdit,
-	commentActive,
-} from "../../../actions/comments";
+ import {
+ 	startDeleteComment,
+ //	startVoteComment,
+ 	startNewCommentOrEdit,
+ 	commentActive,
+ } from "../../../actions/comments";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 	faEdit,
@@ -30,7 +30,7 @@ export const CommentCard = (comment) => {
 	const dispatch = useDispatch();
 	const userLogged = useSelector((state) => state.auth.username);
 	const uid = useSelector((state) => state.auth.uid);
-	const { id, body, username, date, usersWhoVoted, opinions } = comment;
+	const { id, body, username, date,  } = comment;
 
 	const handleEdit = (idComment, body) => {
 		dispatch(startNewCommentOrEdit("edit", idComment, body));
@@ -40,17 +40,17 @@ export const CommentCard = (comment) => {
 		dispatch(startDeleteComment(id));
 	};
 
-	const handleVote = (idComment) => {
-		if (usersWhoVoted.includes(uid)) {
-			setIsChecked(!isChecked);
-			const removeUid = usersWhoVoted.filter((id) => id !== uid);
-			dispatch(startVoteComment(idComment, removeUid, "remove"));
-		} else {
-			setIsChecked(!isChecked);
-			usersWhoVoted.push(uid);
-			dispatch(startVoteComment(idComment, usersWhoVoted, "add"));
-		}
-	};
+	//const handleVote = (idComment) => {
+		// if (usersWhoVoted.includes(uid)) {
+		// 	setIsChecked(!isChecked);
+		// 	const removeUid = usersWhoVoted.filter((id) => id !== uid);
+		// 	dispatch(startVoteComment(idComment, removeUid, "remove"));
+		// } else {
+		// 	setIsChecked(!isChecked);
+		// 	usersWhoVoted.push(uid);
+		// 	dispatch(startVoteComment(idComment, usersWhoVoted, "add"));
+		// }
+	//};
 
 	const handleComment = () => {
 		dispatch(commentActive(comment));
@@ -59,20 +59,19 @@ export const CommentCard = (comment) => {
 
 	return (
 		<Card width="300px" className="animate__animated animate__fadeIn">
-			{userLogged === username && (
-				<ContainerActionButton>
-					<ActionButton
-						action="edit"
-						onClick={() => handleEdit(id, body)}>
-						<FontAwesomeIcon icon={faEdit} />
-					</ActionButton>
-					<ActionButton
-						action="delete"
-						onClick={() => handleDelete(id)}>
-						<FontAwesomeIcon icon={faTrashAlt} />
-					</ActionButton>
-				</ContainerActionButton>
-			)}
+			<ContainerActionButton>
+				<ActionButton
+					action="edit"
+					onClick={() => handleEdit(id, body)}>
+					<FontAwesomeIcon icon={faEdit} />
+				</ActionButton>
+				<ActionButton
+					action="delete"
+					onClick={() => handleDelete(id)}>
+					<FontAwesomeIcon icon={faTrashAlt} />
+				</ActionButton>
+			</ContainerActionButton>
+
 			<p className="comment">{body}</p>
 			<ContainerAuthorDate>
 				<p>
@@ -80,16 +79,9 @@ export const CommentCard = (comment) => {
 				</p>
 			</ContainerAuthorDate>
 			<ContainerLikesAndComments>
-				<div onClick={() => handleVote(id)}>
-					<span>{usersWhoVoted.length}</span>&nbsp;
-					<FontAwesomeIcon
-						color={usersWhoVoted.includes(uid) ? "#ff6961" : "grey"}
-						icon={faHeart}
-						title="Like"
-					/>
-				</div>
+ 
 				<div onClick={handleComment}>
-					<span>{opinions.length}</span>&nbsp;
+	
 					<FontAwesomeIcon
 						color="grey"
 						icon={faComment}

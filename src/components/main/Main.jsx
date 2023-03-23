@@ -4,7 +4,7 @@ import { CommentCard } from "../ui/commentCard/CommentCard";
 import { loadComments } from "../../actions/comments";
 import { useDispatch, useSelector } from "react-redux";
 import { Loading } from "../ui/loading/Loading";
-import { db } from "../../firebase/config";
+import { db } from "../../firebase";
 import { finishLoading, startLoading } from "../../actions/ui";
 
 export const Main = () => {

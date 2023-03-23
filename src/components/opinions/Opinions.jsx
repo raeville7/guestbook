@@ -5,29 +5,29 @@ import {
 	Author,
 	ContainerAuthorDate,
 	ActionButton,
-	ContainerLikesAndComments,
+	//ContainerLikesAndComments,
 	ContainerActionButton,
 	CreatorTag,
 } from "../ui/commentCard/styles";
 import { useDispatch, useSelector } from "react-redux";
 import {
-	startDeleteComment,
-	startVoteComment,
-	startNewCommentOrEdit,
-	loadCommentAndOpinions,
-	startNewOpinion,
+ 	startDeleteComment,
+// 	startVoteComment,
+ 	startNewCommentOrEdit,
+ 	loadCommentAndOpinions,
+// 	startNewOpinion,
 } from "../../actions/comments";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 	faEdit,
 	faTrashAlt,
-	faHeart,
-	faComment,
+	//faHeart,
+	//faComment,
 	faCheckDouble,
 } from "@fortawesome/free-solid-svg-icons";
 import { useParams, useHistory } from "react-router-dom";
 import { OpinionsContainer, Opinion, Form } from "./styles";
-import { db } from "../../firebase/config";
+import { db } from "../../firebase";
 import { Loading } from "../ui/loading/Loading";
 import { Button } from "../ui/Navigation/styles";
 import { useForm } from "../../hooks/useForm";
@@ -37,12 +37,12 @@ export const Opinions = () => {
 	const history = useHistory();
 	const { id } = useParams();
 
-	const [isChecked, setIsChecked] = useState(false);
+	//const [isChecked, setIsChecked] = useState(false);
 	const [comment, setComment] = useState(null);
 	const dispatch = useDispatch();
 	const userLogged = useSelector((state) => state.auth.username);
 	const opinions = useSelector((state) => state.activeComment.opinions);
-	const uid = useSelector((state) => state.auth.uid);
+	//const uid = useSelector((state) => state.auth.uid);
 	const [values, handleInputChange, reset] = useForm({
 		opinionToDB: "",
 	});
@@ -76,17 +76,17 @@ export const Opinions = () => {
 		dispatch(startDeleteComment(id));
 	};
 
-	const handleVote = () => {
-		if (comment.usersWhoVoted.includes(uid)) {
-			setIsChecked(!isChecked);
-			const removeUid = comment.usersWhoVoted.filter((id) => id !== uid);
-			dispatch(startVoteComment(id, removeUid, "remove"));
-		} else {
-			setIsChecked(!isChecked);
-			comment.usersWhoVoted.push(uid);
-			dispatch(startVoteComment(id, comment.usersWhoVoted, "add"));
-		}
-	};
+	//const handleVote = () => {
+		// if (comment.usersWhoVoted.includes(uid)) {
+		// 	setIsChecked(!isChecked);
+		// 	const removeUid = comment.usersWhoVoted.filter((id) => id !== uid);
+		// 	dispatch(startVoteComment(id, removeUid, "remove"));
+		// } else {
+		// 	setIsChecked(!isChecked);
+		// 	comment.usersWhoVoted.push(uid);
+		// 	dispatch(startVoteComment(id, comment.usersWhoVoted, "add"));
+		// }
+	//};
 
 	const handleNewOpinion = (e) => {
 		e.preventDefault();
@@ -100,7 +100,7 @@ export const Opinions = () => {
 			return;
 		}
 
-		dispatch(startNewOpinion(id, opinions, opinionToDB));
+		//dispatch(startNewOpinion(id, opinions, opinionToDB));
 		reset();
 	};
 
@@ -127,7 +127,7 @@ export const Opinions = () => {
 						...
 					</p>
 				</ContainerAuthorDate>
-				<ContainerLikesAndComments>
+				{/* <ContainerLikesAndComments>
 					<div onClick={handleVote}>
 						<span>{comment.usersWhoVoted.length}</span>&nbsp;
 						<FontAwesomeIcon
@@ -148,7 +148,7 @@ export const Opinions = () => {
 							title="Leave a comment!"
 						/>
 					</div>
-				</ContainerLikesAndComments>
+				</ContainerLikesAndComments> */}
 			</Card>
 
 			<Form onSubmit={handleNewOpinion}>

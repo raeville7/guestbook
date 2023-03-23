@@ -1,4 +1,4 @@
-import { firebase } from "../firebase/config";
+import firebase from "firebase/app";
 import { types } from "../types/types";
 import Swal from "sweetalert2";
 
